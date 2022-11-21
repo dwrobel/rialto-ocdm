@@ -39,7 +39,7 @@ static gboolean rialto_eme_protection_metadata_free(GstMeta *meta, GstBuffer *bu
     return TRUE;
 }
 
-GType rialto_eme_protection_metadata_get_type()
+__attribute__ ((visibility ("default"))) GType rialto_eme_protection_metadata_get_type()
 {
     static volatile GType g_type;
     static const gchar *api_tags[] = {"rialto", "protection", NULL};
