@@ -18,7 +18,7 @@
 #
 
 cmake_minimum_required( VERSION 3.10 )
-project( ocdmRialto LANGUAGES C CXX VERSION 1.0 )
+project( ocdmRialto LANGUAGES C CXX VERSION 1.0.0 )
 
 # Add our local cmake directory to search for components
 set( CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} ${CMAKE_CURRENT_SOURCE_DIR}/cmake )
@@ -47,6 +47,13 @@ set(LIB_OCDM_RIALTO_SOURCES
         source/RialtoGStreamerEMEProtectionMetadata.cpp)
 
 add_library(ocdmRialto SHARED ${LIB_OCDM_RIALTO_SOURCES} )
+
+set_target_properties(
+        ocdmRialto
+        PROPERTIES LINK_FLAGS "-Wl,--unresolved-symbols=report-all"
+                   SOVERSION  ${PROJECT_VERSION_MAJOR}
+                   VERSION    ${CMAKE_PROJECT_VERSION}
+        )
 
 target_include_directories(
         ocdmRialto
